@@ -19,7 +19,7 @@ export async function fetchCharacter(page, searchQuery) {
       `https://rickandmortyapi.com/api/character?page=${page}&name=${searchQuery}`
     );
     cardContainer.innerHTML = "";
-
+    pagination.innerHTML = "";
     if (response.ok) {
       const data = await response.json();
       maxPage = data.info.pages;
