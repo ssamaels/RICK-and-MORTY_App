@@ -4,7 +4,6 @@ import { searchQuery } from "../search-bar/search-bar.js";
 
 let maxPage = 42;
 let page = 1;
-// let searchQuery = "";
 
 export function handleNextButton() {
   // const pagination = document.querySelector('[data-js="pagination"]');
