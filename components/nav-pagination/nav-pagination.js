@@ -1,3 +1,4 @@
-export function updatePagination(page, maxPage, pagination) {
+export function updatePagination(page, maxPage) {
+  const pagination = document.querySelector('[data-js="pagination"]');
   pagination.innerHTML = `${page} / ${maxPage}`;
 }
