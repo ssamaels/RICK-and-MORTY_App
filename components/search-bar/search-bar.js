@@ -17,14 +17,20 @@ export function handleSearchSubmit() {
         '[data-js="messageContainer"]'
       );
       const searchedCharacter = characterData.find(
-        (character) => character.name === variables.searchQuery
+        // (character) => character.name === variables.searchQuery
+        (character) =>
+          character.name
+            .toLowerCase()
+            .includes(variables.searchQuery.toLowerCase())
       );
-      if (searchedCharacter) {
+      console.log(searchedCharacter);
+      console.log(characterData);
+      if (searchedCharacter !== undefined) {
         messageContainer.textContent = "";
       } else {
         messageContainer.textContent = "This character doesn't exist.";
-        // variables.page = 0;
-        // variables.maxPage = 1;
+        variables.page = 1;
+        variables.maxPage = 1;
       }
       updatePagination(variables.page, variables.maxPage);
     } catch (error) {
