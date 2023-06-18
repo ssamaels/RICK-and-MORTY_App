@@ -1,17 +1,13 @@
-import { fetchCharacter } from "../../index.js";
+import { fetchCharacter, variables } from "../../index.js";
 import { updatePagination } from "../nav-pagination/nav-pagination.js";
-import { searchQuery } from "../search-bar/search-bar.js";
-
-let maxPage = 42;
-let page = 1;
 
 export function handleNextButton() {
   const nextButton = document.querySelector('[data-js="button-next"]');
   nextButton.addEventListener("click", () => {
-    if (page < maxPage) {
-      page = page + 1;
-      fetchCharacter(page, searchQuery);
-      updatePagination(page, maxPage);
+    if (variables.page < variables.maxPage) {
+      variables.page = variables.page + 1;
+      fetchCharacter(variables.page, variables.searchQuery);
+      updatePagination(variables.page, variables.maxPage);
     }
   });
 }
@@ -19,10 +15,10 @@ export function handleNextButton() {
 export function handlePrevButton() {
   const prevButton = document.querySelector('[data-js="button-prev"]');
   prevButton.addEventListener("click", () => {
-    if (page > 1) {
-      page = page - 1;
-      fetchCharacter(page, searchQuery);
-      updatePagination(page, maxPage);
+    if (variables.page > 1) {
+      variables.page = variables.page - 1;
+      fetchCharacter(variables.page, variables.searchQuery);
+      updatePagination(variables.page, variables.maxPage);
     }
   });
 }

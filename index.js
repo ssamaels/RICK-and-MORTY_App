@@ -9,9 +9,11 @@ import {
 const cardContainer = document.querySelector('[data-js="card-container"]');
 const pagination = document.querySelector('[data-js="pagination"]');
 
-let maxPage = 42;
-let page = 1;
-let searchQuery = "";
+export const variables = {
+  maxPage: 42,
+  page: 1,
+  searchQuery: "",
+};
 
 export async function fetchCharacter(page, searchQuery) {
   try {
@@ -19,24 +21,27 @@ export async function fetchCharacter(page, searchQuery) {
       `https://rickandmortyapi.com/api/character?page=${page}&name=${searchQuery}`
     );
     cardContainer.innerHTML = "";
-    pagination.innerHTML = `${page} / ${maxPage}`;
+    pagination.innerHTML = `${variables.page} / ${variables.maxPage}`;
     if (response.ok) {
       const data = await response.json();
-      maxPage = data.info.pages;
-      updatePagination(page, maxPage);
+      variables.maxPage = data.info.pages;
+      updatePagination(variables.page, variables.maxPage);
       data.results.forEach((character) => {
         let newCard = createCharacterCard(character);
         cardContainer.append(newCard);
       });
+      return data.results;
     } else {
       console.error("Bad Response");
+      return [];
     }
   } catch (error) {
     console.error("An Error occurred", error);
+    return [];
   }
 }
 
-fetchCharacter(page, searchQuery);
+fetchCharacter(variables.page, variables.searchQuery);
 handleSearchSubmit();
 handleNextButton();
 handlePrevButton();

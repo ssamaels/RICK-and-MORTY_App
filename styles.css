@@ -16,6 +16,7 @@
   --color-granite: #252629;
   --color-water-10: #f3f5f9;
   --color-foam: #ffffff;
+  --color-portal: #21d436;
 }
 
 body {
@@ -24,6 +25,12 @@ body {
   height: 100vh;
   display: grid;
   grid-template-rows: 60px 1fr 60px;
+  /* background-image: url(https://www.pngitem.com/pimgs/m/519-5195253_kingsglass-green-portal-title-kingsglass-green-rick-and.png); */
+  background-image: url(https://i0.wp.com/www.seekpng.com/png/detail/4-44144_rick-and-morty-portal-png.png);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  background-attachment: scroll;
 }
 
 ul {
@@ -75,4 +82,10 @@ main {
   background-color: rgb(0 0 0 / 0.2);
   z-index: 10;
   box-shadow: rgba(0, 0, 0, 0.12) 0px -1px 3px, rgba(0, 0, 0, 0.24) 0px -1px 2px;
+}
+
+.messageContainer {
+  text-align: center;
+  color: red;
+  font-size: x-large;
 }

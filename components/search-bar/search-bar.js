@@ -1,17 +1,34 @@
-import { fetchCharacter } from "../../index.js";
+import { fetchCharacter, variables } from "../../index.js";
 import { updatePagination } from "../nav-pagination/nav-pagination.js";
-
-let maxPage = 42;
-let page = 1;
-export let searchQuery = "";
 
 export function handleSearchSubmit() {
   const searchBar = document.querySelector('[data-js="search-bar"]');
-  searchBar.addEventListener("submit", (event) => {
+  searchBar.addEventListener("submit", async (event) => {
     event.preventDefault();
-    searchQuery = event.target.firstElementChild.value;
-    page = 1;
-    fetchCharacter(page, searchQuery);
-    updatePagination(page, maxPage);
+    variables.searchQuery = event.target.firstElementChild.value;
+    variables.page = 1;
+    updatePagination(variables.page, variables.maxPage);
+    try {
+      const characterData = await fetchCharacter(
+        variables.page,
+        variables.searchQuery
+      );
+      const messageContainer = document.querySelector(
+        '[data-js="messageContainer"]'
+      );
+      const searchedCharacter = characterData.find(
+        (character) => character.name === variables.searchQuery
+      );
+      if (searchedCharacter) {
+        messageContainer.textContent = "";
+      } else {
+        messageContainer.textContent = "This character doesn't exist.";
+        // variables.page = 0;
+        // variables.maxPage = 1;
+      }
+      updatePagination(variables.page, variables.maxPage);
+    } catch (error) {
+      console.error(error);
+    }
   });
 }
