@@ -2,6 +2,10 @@
 @import "components/search-bar/search-bar.css";
 @import "components/nav-button/nav-button.css";
 @import "components/nav-pagination/nav-pagination.css";
+@font-face {
+  font-family: "Get-schwifty";
+  src: url(/font/get_schwifty.ttf);
+}
 
 *,
 *::before,
@@ -44,6 +48,11 @@ dl,
 dd {
   padding: 0;
   margin: 0;
+}
+
+h1 {
+  font-family: "Get-schwifty";
+  font-size: xxx-large;
 }
 
 h2 {
